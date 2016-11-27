@@ -12,13 +12,13 @@
         <interval>2</interval>
         <dayOfWeek>4</dayOfWeek>
     </weekly>
-    
+
     <weekly>
         <name>成都研发中心周五周例会</name>
         <roomName>会议室1</roomName>
         <publisher>虞立昂</publisher>
-        <startTime>10:00</startTime>
-        <endTime>12:00</endTime>
+        <startTime>10:00:00</startTime>
+        <endTime>12:00:00</endTime>
         <effectiveDate>2017-01-01</effectiveDate>
         <interval>1</interval>
         <dayOfWeek>5</dayOfWeek>
@@ -28,8 +28,8 @@
         <name>PMO周例会</name>
         <roomName>会议室1</roomName>
         <publisher>虞立昂</publisher>
-        <startTime>09:15</startTime>
-        <endTime>10:00</endTime>
+        <startTime>09:15:00</startTime>
+        <endTime>10:00:00</endTime>
         <effectiveDate>2017-01-01</effectiveDate>
         <interval>1</interval>
         <dayOfWeek>5</dayOfWeek>

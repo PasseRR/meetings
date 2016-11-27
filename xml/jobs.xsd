@@ -13,7 +13,7 @@
         </xs:annotation>
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="weekly" minOccurs="0">
+                <xs:element name="weekly" minOccurs="0" maxOccurs="unbounded">
                     <xs:annotation>
                         <xs:documentation>
                             <![CDATA[
@@ -22,65 +22,17 @@
                         </xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
-                        <xs:element name="name" type="xs:string">
-                            <xs:documentation>
-                                <![CDATA[
-                                  周会议名称
-                                ]]>
-                            </xs:documentation>
-                        </xs:element>
-                        <xs:element name="roomName" type="xs:string">
-                            <xs:documentation>
-                                <![CDATA[
-                                  周会议举行所在会议室名称
-                                ]]>
-                            </xs:documentation>
-                        </xs:element>
-                        <xs:element name="publisher" type="xs:string">
-                            <xs:documentation>
-                                <![CDATA[
-                                  周会议发布人
-                                ]]>
-                            </xs:documentation>
-                        </xs:element>
-                        <xs:element name="startTime" type="xs:time">
-                            <xs:documentation>
-                                <![CDATA[
-                                  会议开始时间
-                                ]]>
-                            </xs:documentation>
-                        </xs:element>
-                        <xs:element name="endTime" type="xs:time">
-                            <xs:documentation>
-                                <![CDATA[
-                                  会议结束时间
-                                ]]>
-                            </xs:documentation>
-                        </xs:element>
-                        <xs:element name="effectiveDate" type="xs:date">
-                            <xs:documentation>
-                                <![CDATA[
-                                  会议生效日期
-                                ]]>
-                            </xs:documentation>
-                        </xs:element>
-                        <xs:element name="interval" type="xs:int" default="1">
-                            <xs:documentation>
-                                <![CDATA[
-                                  会议周期间隔
-                                ]]>
-                            </xs:documentation>
-                        </xs:element>
-                        <xs:element name="dayOfWeek" type="xs:int">
-                            <xs:documentation>
-                                <![CDATA[
-                                  星期几(0-6 分别代表星期天、星期一到六)
-                                ]]>
-                            </xs:documentation>
-                        </xs:element>
+                        <xs:element name="name" type="name" />
+                        <xs:element name="roomName" type="roomName"/>
+                        <xs:element name="publisher" type="publisher" />
+                        <xs:element name="effectiveDate" type="effectiveDate" />
+                        <xs:element name="interval" type="interval" default="1"/>
+                        <xs:element name="dayOfWeek" type="dayOfWeek" />
+                        <xs:element name="startTime" type="startTime" />
+                        <xs:element name="endTime" type="endTime" />
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="monthly" minOccurs="0">
+                <xs:element name="monthly" minOccurs="0" maxOccurs="unbounded">
                     <xs:annotation>
                         <xs:documentation>
                             <![CDATA[
@@ -88,11 +40,110 @@
                             ]]>
                         </xs:documentation>
                     </xs:annotation>
-                    <xs:complexType>
-
-                    </xs:complexType>
                 </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <xs:simpleType name="name">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[
+                  周会议名称
+                ]]>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="256"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="roomName">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[
+                  周会议举行所在会议室名称
+                ]]>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="32"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="publisher">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[
+                  周会议发布人
+                ]]>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="8"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="startTime">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[
+                  会议开始时间
+                ]]>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="endTime">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[
+                  会议结束时间
+                ]]>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="effectiveDate">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[
+                  会议结束时间
+                ]]>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:date"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="interval">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[
+                  会议周期间隔
+                ]]>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="dayOfWeek">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[
+                  星期几(0-6 分别代表星期天、星期一到六)
+                ]]>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="6" />
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
