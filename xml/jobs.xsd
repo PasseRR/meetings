@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://github.com/PasseRR/meetings"
+           xmlns="https://github.com/PasseRR/meetings"
+           elementFormDefault="qualified">
+    <xs:element name="jobs">
+        <xs:annotation>
+            <xs:documentation xml:lang="cn">
+                <![CDATA[
+                  定制定时任务配置根节点
+                ]]>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="weekly">
+                    <xs:annotation>
+                        <xs:documentation>
+                            <![CDATA[
+                              每周执行的定时任务节点
+                            ]]>
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:element name="name" type="xs:string">
+                            <xs:documentation>
+                                <![CDATA[
+                                  周会议名称
+                                ]]>
+                            </xs:documentation>
+                        </xs:element>
+                        <xs:element name="roomName" type="xs:string">
+                            <xs:documentation>
+                                <![CDATA[
+                                  周会议举行所在会议室名称
+                                ]]>
+                            </xs:documentation>
+                        </xs:element>
+                        <xs:element name="publisher" type="xs:string">
+                            <xs:documentation>
+                                <![CDATA[
+                                  周会议发布人
+                                ]]>
+                            </xs:documentation>
+                        </xs:element>
+                        <xs:element name="startTime" type="xs:time">
+                            <xs:documentation>
+                                <![CDATA[
+                                  会议开始时间
+                                ]]>
+                            </xs:documentation>
+                        </xs:element>
+                        <xs:element name="endTime" type="xs:time">
+                            <xs:documentation>
+                                <![CDATA[
+                                  会议结束时间
+                                ]]>
+                            </xs:documentation>
+                        </xs:element>
+                        <xs:element name="effectiveDate" type="xs:date">
+                            <xs:documentation>
+                                <![CDATA[
+                                  会议生效日期
+                                ]]>
+                            </xs:documentation>
+                        </xs:element>
+                        <xs:element name="interval" type="xs:int" default="1">
+                            <xs:documentation>
+                                <![CDATA[
+                                  会议周期间隔
+                                ]]>
+                            </xs:documentation>
+                        </xs:element>
+                        <xs:element name="dayOfWeek" type="xs:int">
+                            <xs:documentation>
+                                <![CDATA[
+                                  星期几(0-6 分别代表星期天、星期一到六)
+                                ]]>
+                            </xs:documentation>
+                        </xs:element>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="monthly">
+                    <xs:annotation>
+                        <xs:documentation>
+                            <![CDATA[
+                              每月执行的定时任务节点
+                            ]]>
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

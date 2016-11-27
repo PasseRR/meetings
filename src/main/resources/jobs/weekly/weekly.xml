@@ -1,13 +1,37 @@
-<!-- type默认weekly 跟job的group对应 -->
-<jobs>
+<jobs xmlns="https://github.com/PasseRR/meetings"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://github.com/PasseRR/meetings
+      https://github.com/PasseRR/meetings/xml/jobs.xsd">
     <weekly>
-        <name>技术双周例会</name> <!-- 会议名字 -->
-        <roomName>会议室1</roomName> <!-- 会议室名字 -->
-        <publisher>虞立昂</publisher> <!-- 会议发布人 -->
-        <startTime>15:00:00</startTime> <!-- 会议开始时间 格式HH:mm:ss -->
-        <endTime>17:00:00</endTime> <!-- 会议结束时间 格式HH:mm:ss -->
-        <effectiveDate>2017-01-08</effectiveDate> <!-- 开始执行任务日期 必须任务开始周的周日 -->
+        <name>技术双周例会</name>
+        <roomName>会议室1</roomName>
+        <publisher>虞立昂</publisher>
+        <startTime>15:00:00</startTime>
+        <endTime>17:00:00</endTime>
+        <effectiveDate>2017-01-08</effectiveDate>
         <interval>2</interval>
-        <dayOfWeek>4</dayOfWeek> <!-- 星期几 -->
+        <dayOfWeek>4</dayOfWeek>
+    </weekly>
+    
+    <weekly>
+        <name>成都研发中心周五周例会</name>
+        <roomName>会议室1</roomName>
+        <publisher>虞立昂</publisher>
+        <startTime>10:00</startTime>
+        <endTime>12:00</endTime>
+        <effectiveDate>2017-01-06</effectiveDate>
+        <interval>1</interval>
+        <dayOfWeek>5</dayOfWeek>
+    </weekly>
+    
+    <weekly>
+        <name>PMO周例会</name>
+        <roomName>会议室1</roomName>
+        <publisher>虞立昂</publisher>
+        <startTime>09:15</startTime>
+        <endTime>10:00</endTime>
+        <effectiveDate>2017-01-06</effectiveDate>
+        <interval>1</interval>
+        <dayOfWeek>5</dayOfWeek>
     </weekly>
 </jobs>

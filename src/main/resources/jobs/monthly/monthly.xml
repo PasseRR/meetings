@@ -1,11 +1,14 @@
 <!-- type默认monthly 跟job的group对应 -->
-<jobs>
+<!--<jobs xmlns="https://github.com/PasseRR/meetings"-->
+      <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+      <!--xsi:schemaLocation="https://github.com/PasseRR/meetings-->
+      <!--https://github.com/PasseRR/meetings/xml/jobs.xsd">-->
     <!--<job>-->
-        <!--<name>月会议</name> &lt;!&ndash; 会议名字 &ndash;&gt;-->
-        <!--<roomName>会议室9-官网组</roomName> &lt;!&ndash; 会议室名字 &ndash;&gt;-->
-        <!--<publisher>谢海</publisher> &lt;!&ndash; 会议发布人 &ndash;&gt;-->
-        <!--<dayOfWeek>1</dayOfWeek> &lt;!&ndash; 星期几 &ndash;&gt;-->
-        <!--<startTime>09:30:00</startTime> &lt;!&ndash; 会议开始时间 格式HH:mm:ss &ndash;&gt;-->
-        <!--<endTime>10:00:00</endTime> &lt;!&ndash; 会议结束时间 格式HH:mm:ss &ndash;&gt;-->
+    <!--<name>月会议</name> &lt;!&ndash; 会议名字 &ndash;&gt;-->
+    <!--<roomName>会议室9-官网组</roomName> &lt;!&ndash; 会议室名字 &ndash;&gt;-->
+    <!--<publisher>谢海</publisher> &lt;!&ndash; 会议发布人 &ndash;&gt;-->
+    <!--<dayOfWeek>1</dayOfWeek> &lt;!&ndash; 星期几 &ndash;&gt;-->
+    <!--<startTime>09:30:00</startTime> &lt;!&ndash; 会议开始时间 格式HH:mm:ss &ndash;&gt;-->
+    <!--<endTime>10:00:00</endTime> &lt;!&ndash; 会议结束时间 格式HH:mm:ss &ndash;&gt;-->
     <!--</job>-->
-</jobs>
+<!--</jobs>-->
