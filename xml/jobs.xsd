@@ -13,7 +13,7 @@
         </xs:annotation>
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="weekly">
+                <xs:element name="weekly" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation>
                             <![CDATA[
@@ -80,7 +80,7 @@
                         </xs:element>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="monthly">
+                <xs:element name="monthly" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation>
                             <![CDATA[

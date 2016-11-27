@@ -1,6 +1,7 @@
 package com.gome.meetings.vo;
 
 import lombok.Data;
+import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -16,6 +17,11 @@ import java.util.List;
 @Data
 @Root(name = "jobs")
 public class JobsVo {
+    /**
+     * xml schema
+     */
+    @Attribute
+    private String schemaLocation;
     /**
      * 周任务数据
      */

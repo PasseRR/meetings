@@ -1,6 +1,5 @@
-<!--<jobs xmlns="https://github.com/PasseRR/meetings"-->
-      <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
-      <!--xsi:schemaLocation="https://github.com/PasseRR/meetings-->
-      <!--https://github.com/PasseRR/meetings/xml/jobs.xsd">-->
-
-<!--</jobs>-->
+<jobs xmlns="https://github.com/PasseRR/meetings"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://github.com/PasseRR/meetings
+      https://github.com/PasseRR/meetings/xml/jobs.xsd">
+</jobs>
