@@ -52,8 +52,7 @@
                 dayNames: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
                 dayNamesShort: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
                 timeFormat: {
-                    agenda: 'HH:mm{ ~ HH:mm}',
-                    '': 'hh(:mm)tt'
+                    agenda: 'HH:mm{ ~ HH:mm}'
                 },
                 columnFormat: {
                     month: 'ddd',
@@ -90,6 +89,7 @@
                             revertFunc();
                         }
                     });
+                    $("div[id^='qtip-']").hide();
                 },
                 eventDrop: function (event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view) {
                     $.getJSON("/roomSchedule/updateRoomEvent", {
@@ -103,10 +103,12 @@
                             revertFunc();
                         }
                     });
+                    $("div[id^='qtip-']").hide();
                 },
                 eventMouseover: function (event, jsEvent, view) {
                     if (event.editable) {
-                        $(this).children("div>*:nth-child(1)").append("<a class='delIcon' href='/roomSchedule/deleteRoomEvent/" + event.id + "'>&times;</a>");
+                        console.info($(this));
+                        $(this).children("div>*:nth-child(1)").children("div>*:nth-child(1)").append("<a class='delIcon' href='/roomSchedule/deleteRoomEvent/" + event.id + "'>&times;</a>");
                     }
                 },
                 eventMouseout: function (event, jsEvent, view) {
@@ -135,7 +137,7 @@
                         }
                     }
                     $('#calendar').fullCalendar('unselect');
-
+                    $("div[id^='qtip-']").hide();
                 },
                 eventRender: function (event, element) {
                     element.qtip({
