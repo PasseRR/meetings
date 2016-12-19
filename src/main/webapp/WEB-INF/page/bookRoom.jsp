@@ -106,7 +106,7 @@
                 },
                 eventMouseover: function (event, jsEvent, view) {
                     if (event.editable) {
-                        $(this).children("div>*:nth-child(1)").append("<div class='delIcon'><a href='/roomSchedule/deleteRoomEvent/" + event.id + "'>&times;</a></div>");
+                        $(this).children("div>*:nth-child(1)").append("<a class='delIcon' href='/roomSchedule/deleteRoomEvent/" + event.id + "'>&times;</a>");
                     }
                 },
                 eventMouseout: function (event, jsEvent, view) {
@@ -153,8 +153,8 @@
                         }
                     });
 
-                    element.click(function () {
-                        if (event.editable) {
+                    element.click(function (e) {
+                        if (e.toElement.className != "delIcon" && event.editable) {
                             var title = prompt('修改会议主题:', event.title);
                             if (title) {
                             $.getJSON("/roomSchedule/updateRoomEventTitle", {
