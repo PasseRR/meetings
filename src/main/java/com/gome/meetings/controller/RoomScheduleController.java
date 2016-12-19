@@ -1,11 +1,16 @@
 package com.gome.meetings.controller;
 
-import com.jfinal.core.Controller;
 import com.gome.meetings.bo.RoomEvent;
 import com.gome.meetings.common.CommonConstant;
 import com.gome.meetings.model.RoomSchedule;
+import com.jfinal.core.Controller;
+import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Record;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
 
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
 import java.util.*;
 
 public class RoomScheduleController extends Controller {
@@ -58,6 +63,15 @@ public class RoomScheduleController extends Controller {
         renderJson(returnMap);
     }
 
+    public void updateRoomEventTitle() throws UnsupportedEncodingException {
+        Map<String, Object> returnMap = new HashMap<>();
+        returnMap.put("isSuccess", true);
+        RoomSchedule roomSchedule = RoomSchedule.dao.findById(getParaToInt("id"));
+        roomSchedule.set("subject", new String(super.getPara("title").getBytes("ISO-8859-1"), "UTF-8"));
+        roomSchedule.update();
+        renderJson(returnMap);
+    }
+
     public void addRoomEvent() throws UnsupportedEncodingException {
         Map<String, Object> returnMap = new HashMap<>();
         returnMap.put("isSuccess", true);
@@ -80,5 +94,24 @@ public class RoomScheduleController extends Controller {
                     .set("create_date", new Date()).save();
         }
         renderJson(returnMap);
+    }
+
+    public void deleteRoomEvent() {
+        Record record = Db.findById("room_schedule", getPara(0));
+        if (record.getTimestamp("end").before(getToday())) {
+            renderNull();
+        }
+        Db.deleteById("room_schedule", getPara(0));
+        redirect("/");
+    }
+
+    private Date getToday() {
+        Date date = null;
+        try {
+            date = DateUtils.parseDate(DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 }

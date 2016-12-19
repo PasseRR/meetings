@@ -65,16 +65,15 @@
                     week: "yyyy-MM-dd{' 至 'yyyy-MM-dd}",
                     day: 'ddd'
                 },
-                axisFormat : 'HH:mm',
-                minTime : 9,
-                maxTime : 20,
+                axisFormat: 'HH:mm',
+                minTime: 9,
+                maxTime: 20,
                 events: function (start, end, callback) {
                     $.getJSON("/roomSchedule/getDurationEvent", {
                         roomId: roomId,
                         start: Math.round(start.getTime() / 1000),
                         end: Math.round(end.getTime() / 1000)
                     }, function (events) {
-                        console.info(events);
                         callback(events);
                     });
                 },
@@ -104,6 +103,14 @@
                             revertFunc();
                         }
                     });
+                },
+                eventMouseover: function (event, jsEvent, view) {
+                    if (event.editable) {
+                        $(this).children("div>*:nth-child(1)").append("<div class='delIcon'><a href='/roomSchedule/deleteRoomEvent/" + event.id + "'>&times;</a></div>");
+                    }
+                },
+                eventMouseout: function (event, jsEvent, view) {
+                    $(".delIcon").remove();
                 },
                 selectable: true,
                 selectHelper: true,
@@ -145,14 +152,30 @@
                             at: 'left center'
                         }
                     });
+
+                    element.click(function () {
+                        if (event.editable) {
+                            var title = prompt('修改会议主题:', event.title);
+                            if (title) {
+                            $.getJSON("/roomSchedule/updateRoomEventTitle", {
+                                id: event.id,
+                                title: title
+                            }, function (data) {
+                                if (data.isSuccess) {
+                                    $('#calendar').fullCalendar('refetchEvents');
+                                } else {
+                                    alert(data.msg);
+                                }
+                            });
+                            }
+                        }
+                    });
                 },
                 loading: function (bool) {
                     if (bool) $('#loading').show();
                     else $('#loading').hide();
                 }
             });
-
-
         });
 
         function getEvents(start, end) {
