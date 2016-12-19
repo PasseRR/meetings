@@ -174,7 +174,6 @@
                                 }
                             }else { // 删除会议
                                 var isOk = confirm('确定删除会议?');
-                                console.info(isOk);
                                 if(isOk){
                                     $.getJSON("/roomSchedule/deleteRoomEvent", {
                                         id : event.id
