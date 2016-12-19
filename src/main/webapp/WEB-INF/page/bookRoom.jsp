@@ -108,7 +108,9 @@
                 eventMouseover: function (event, jsEvent, view) {
                     if (event.editable) {
                         console.info($(this));
-                        $(this).children("div>*:nth-child(1)").children("div>*:nth-child(1)").append("<a class='delIcon' href='/roomSchedule/deleteRoomEvent/" + event.id + "'>&times;</a>");
+                        $(this).children("div>*:nth-child(1)")
+                                .children("div>*:nth-child(1)")
+                                .append("<a class='delIcon' href='/roomSchedule/deleteRoomEvent/" + event.id + "'>&times;</a>");
                     }
                 },
                 eventMouseout: function (event, jsEvent, view) {
