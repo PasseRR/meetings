@@ -97,12 +97,15 @@ public class RoomScheduleController extends Controller {
     }
 
     public void deleteRoomEvent() {
-        Record record = Db.findById("room_schedule", getPara(0));
+        int id = super.getParaToInt("id");
+        Record record = Db.findById("room_schedule", id);
         if (record.getTimestamp("end").before(getToday())) {
             renderNull();
         }
-        Db.deleteById("room_schedule", getPara(0));
-        redirect("/");
+        Db.deleteById("room_schedule", id);
+        Map<String, Object> returnMap = new HashMap<>();
+        returnMap.put("isSuccess", true);
+        super.renderJson(returnMap);
     }
 
     private Date getToday() {

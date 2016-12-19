@@ -107,10 +107,9 @@
                 },
                 eventMouseover: function (event, jsEvent, view) {
                     if (event.editable) {
-                        console.info($(this));
                         $(this).children("div>*:nth-child(1)")
                                 .children("div>*:nth-child(1)")
-                                .append("<a class='delIcon' href='/roomSchedule/deleteRoomEvent/" + event.id + "'>&times;</a>");
+                                .append("<a class='delIcon' title='删除' href='#'>&times;</a>");
                     }
                 },
                 eventMouseout: function (event, jsEvent, view) {
@@ -158,19 +157,35 @@
                     });
 
                     element.click(function (e) {
-                        if (e.toElement.className != "delIcon" && event.editable) {
-                            var title = prompt('修改会议主题:', event.title);
-                            if (title) {
-                            $.getJSON("/roomSchedule/updateRoomEventTitle", {
-                                id: event.id,
-                                title: title
-                            }, function (data) {
-                                if (data.isSuccess) {
-                                    $('#calendar').fullCalendar('refetchEvents');
-                                } else {
-                                    alert(data.msg);
+                        if (event.editable) {
+                            if (e.toElement.className != "delIcon") { // 修改标题
+                                var title = prompt('修改会议主题:', event.title);
+                                if (title) {
+                                    $.getJSON("/roomSchedule/updateRoomEventTitle", {
+                                        id: event.id,
+                                        title: title
+                                    }, function (data) {
+                                        if (data.isSuccess) {
+                                            $('#calendar').fullCalendar('refetchEvents');
+                                        } else {
+                                            alert(data.msg);
+                                        }
+                                    });
                                 }
-                            });
+                            }else { // 删除会议
+                                var isOk = confirm('确定删除会议?');
+                                console.info(isOk);
+                                if(isOk){
+                                    $.getJSON("/roomSchedule/deleteRoomEvent", {
+                                        id : event.id
+                                    }, function (data) {
+                                        if (data.isSuccess) {
+                                            $('#calendar').fullCalendar('refetchEvents');
+                                        } else {
+                                            alert(data.msg);
+                                        }
+                                    });
+                                }
                             }
                         }
                     });
