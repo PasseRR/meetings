@@ -30,8 +30,8 @@ public class SysConfig extends JFinalConfig {
     public void configRoute(Routes me) {
         me.add("/", CommonController.class);
         me.add("/user", UserController.class, "/admin");
-        me.add("/menu", MenuController.class, "/admin");
-        me.add("/userMenu", UserMenuController.class);
+//        me.add("/menu", MenuController.class, "/admin");
+//        me.add("/userMenu", UserMenuController.class);
         me.add("/room", RoomController.class, "/admin");
         me.add("/roomSchedule", RoomScheduleController.class);
         me.add("/admin", AdminController.class);
@@ -49,12 +49,12 @@ public class SysConfig extends JFinalConfig {
         ActiveRecordPlugin arp = new ActiveRecordPlugin(druidPlugin);
         me.add(arp);
 //		arp.setContainerFactory(new  CaseInsensitiveContainerFactory());
-        arp.addMapping("menu", Menu.class);
+//        arp.addMapping("menu", Menu.class);
         arp.addMapping("user", User.class);
-        arp.addMapping("user_menu", UserMenu.class);
+//        arp.addMapping("user_menu", UserMenu.class);
         arp.addMapping("room", Room.class);
         arp.addMapping("room_schedule", RoomSchedule.class);
-
+//
         // 定时任务插件
 //        QuartzPlugin quartzPlugin = new QuartzPlugin();
 //        quartzPlugin.setJobs("jobs.properties");
