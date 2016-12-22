@@ -191,8 +191,8 @@
                     });
                 },
                 loading: function (bool) {
-                    if (bool) $('#loading').show();
-                    else $('#loading').hide();
+//                    if (bool) $('#loading').show();
+//                    else $('#loading').hide();
                 }
             });
 
