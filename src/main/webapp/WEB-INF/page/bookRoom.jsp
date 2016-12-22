@@ -19,7 +19,16 @@
     <script>
         var roomId;
         $(document).ready(function () {
-
+            $.format = function () {
+                if (arguments.length == 0)
+                    return null;
+                var str = arguments[0];
+                for (var i = 1; i < arguments.length; i++) {
+                    var re = new RegExp('\\{' + (i - 1) + '\\}', 'gm');
+                    str = str.replace(re, arguments[i]);
+                }
+                return str;
+            };
             roomId = $("#room1").attr("roomId");
             $("#room1").css("backgroundColor", "#003399");
 
@@ -204,6 +213,25 @@
                         // 想table写入数据
                         $("#todayMeetings table tr[id^=meetings]").remove();
                         data.forEach(function (item, index) {
+                            var status = "<font color={0}>{1}</font>";
+                            switch (item.status){
+                                case 0 : {
+                                    status = $.format(status, "red", "已结束");
+                                    break;
+                                }
+                                case 1 : {
+                                    status = $.format(status, "gray", "未开始");
+                                    break;
+                                }
+                                case 2 : {
+                                    status = $.format(status, "yellow", "即将开始");
+                                    break;
+                                }
+                                case 3 : {
+                                    status = $.format(status, "green", "进行中");
+                                    break;
+                                }
+                            }
                             $("#todayMeetings table").append(
                                     "<tr id = 'meetings" + index + "'>" +
                                     "<td>" + item.subject + "</td>" +
@@ -212,6 +240,7 @@
                                     "<td>" + item.roomname + "</td>" +
                                     "<td>" + item.username + "</td>" +
                                     "<td>" + item.email + "</td>" +
+                                    "<td>" + status + "</td>" +
                                     "</tr>"
                             );
                         });
@@ -294,7 +323,8 @@
                 <th width="12.5%">结束时间</th>
                 <th width="8%">会议室</th>
                 <th width="7%">发起人</th>
-                <th width="20%">e-mail</th>
+                <th width="18%">e-mail</th>
+                <th width="9%">状态</th>
             </tr>
         </table>
     </div>

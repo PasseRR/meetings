@@ -109,7 +109,7 @@ public class RoomScheduleController extends Controller {
     }
 
     public void todayMeetings(){
-        super.renderJson(RoomSchedule.dao.getTodayEvent());
+        super.renderJson(RoomSchedule.dao.getTodayEvent(new Date()));
     }
 
     private Date getToday() {

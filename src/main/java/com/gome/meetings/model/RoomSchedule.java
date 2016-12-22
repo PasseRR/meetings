@@ -3,6 +3,7 @@ package com.gome.meetings.model;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
 
+import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("serial")
@@ -46,5 +47,22 @@ public class RoomSchedule extends Model<RoomSchedule> {
 		return dao.find(sqlStr);
 	}
 	
-	
+
+	public List<RoomSchedule> getTodayEvent(Date now){
+	    // 0 已结束
+        // 1 未开始
+        // 2 即将开始
+        // 3 进行中
+	    String sqlStr="select x.*,y.name username,y.tel,y.email, z.name roomname, " +
+                "case when end < ? then 0 " +
+                "when TIMESTAMPDIFF(MINUTE, ?, start) > 15 then 1 " +
+                "when TIMESTAMPDIFF(MINUTE, ?, start) <= 15 and TIMESTAMPDIFF(MINUTE, ?, start) > 0 then 2 " +
+                "when start <= ? and end >= ? then 3  end as status " +
+                "from room_schedule x "
+				+" left join user y on x.userid = y.id "
+				+" left join room z on x.roomid=z.id "
+				+" where to_days(start) = to_days(?) order by start asc";
+
+        return dao.find(sqlStr, now, now, now, now, now, now, now);
+    }
 }
