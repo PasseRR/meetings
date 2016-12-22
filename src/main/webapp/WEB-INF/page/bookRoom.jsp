@@ -241,7 +241,7 @@
 
     <div style='clear: both'></div>
     <div id='loading'>loading...</div>
-    <div id='exit'><a href="/exit">退出</a></div>
+    <div id='exit'><a href="/exit" title="注销"><span class="ui-icon ui-icon-power" /></a></div>
     <div id="qTipContent">
         <table>
             <tr>
