@@ -198,7 +198,7 @@
 
             $("#schedule").hide();
             $("#schedule").animate({marginLeft: '-200%'});
-            $("#next").click(function () {
+            $("#next, .pagingRight").click(function () {
                 $.get("/roomSchedule/todayMeetings", {}, function (data) {
                     if(data){
                         // 想table写入数据
@@ -222,7 +222,7 @@
                 $("#schedule").animate({marginLeft: 0}, 500);
             });
 
-            $("#previous").click(function () {
+            $("#previous, .pagingLeft").click(function () {
                 $("#scheduleRoom").animate({marginLeft: 0}, 500);
                 $("#schedule").animate({marginLeft: '-200%'}, 500);
                 $("#schedule").hide();
@@ -270,7 +270,7 @@
         </c:forEach>
     </div>
     <div id='calendar'></div>
-    <div class="paging"><a href="#" id="next" style="vertical-align: middle;" title="今日会议">&gt;&gt;</a></div>
+    <div class="paging" title="今日会议"><span class="pagingRight"><a href="#" id="next">▶</a></span></div>
 
     <div style='clear: both'></div>
     <div id='loading'>loading...</div>
@@ -284,7 +284,7 @@
     </div>
 </div>
 <div class="wrap" id="schedule">
-    <div class="paging"><a href="#" id="previous" title="返回">&lt;&lt;</a></div>
+    <div class="paging" title="今日会议"><span class="pagingLeft"><a href="#" id="previous">◀</a></span></div>
     <div id="todayMeetings">
         <table>
             <caption>今日会议</caption>

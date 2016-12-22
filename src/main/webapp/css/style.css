@@ -140,14 +140,30 @@ body {
 }
 
 .paging{
-    float: left;
-    width: 5%;
-    height: 300px;
+    /*float: right;*/
     text-decoration:none;
 }
-.paging a:link,.delIcon a:link {text-decoration:none;}
-.paging a:visited,.delIcon a:visited {text-decoration:none;}
-.paging a:hover,.delIcon a:hover {color: darkgray; text-decoration:none;}
+.paging :hover {
+    background-color: #F5F5DC;
+    cursor:pointer;
+}
+.paging a {color: gray;}
+.paging a:link { color: #F5F5DC;text-decoration:none;}
+
+.pagingRight{
+    width: 5%;
+    float: right;
+    margin-right: 10px;
+    height: 550px;
+    line-height: 550px;
+}
+
+.pagingLeft{
+    width: 5%;
+    float: left;
+    height: 550px;
+    line-height: 550px;
+}
 
 #loading {
 	position: absolute;
