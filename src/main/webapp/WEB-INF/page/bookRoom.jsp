@@ -203,18 +203,17 @@
                     if(data){
                         // 想table写入数据
                         $("#todayMeetings table tr[id^=meetings]").remove();
-                        data.forEach(function(item, index){
-                            console.info(index);
-                           $("#todayMeetings table").append(
-                                   "<tr id = 'meetings"+ index +"'>" +
-                                   "<td>" + item.subject + "</td>" +
-                                   "<td>" + item.start + "</td>" +
-                                   "<td>" + item.end + "</td>" +
-                                   "<td>" + item.roomname + "</td>" +
-                                   "<td>" + item.username + "</td>" +
-                                   "<td>" + item.email + "</td>" +
-                                   "</tr>"
-                           );
+                        data.forEach(function (item, index) {
+                            $("#todayMeetings table").append(
+                                    "<tr id = 'meetings" + index + "'>" +
+                                    "<td>" + item.subject + "</td>" +
+                                    "<td>" + item.start + "</td>" +
+                                    "<td>" + item.end + "</td>" +
+                                    "<td>" + item.roomname + "</td>" +
+                                    "<td>" + item.username + "</td>" +
+                                    "<td>" + item.email + "</td>" +
+                                    "</tr>"
+                            );
                         });
                     }
                 });
@@ -277,28 +276,11 @@
     <div id='loading'>loading...</div>
     <div id='exit'><a href="/exit" title="注销"><span class="ui-icon ui-icon-power"/></a></div>
     <div id="qTipContent">
-        <table>
-            <tr>
-                <td>发起人：</td>
-                <td><span id="initiator"></span></td>
-            </tr>
-            <tr>
-                <td>邮箱：</td>
-                <td><span id="contact"></span></td>
-            </tr>
-            <tr>
-                <td>日期：</td>
-                <td><span id="date"></span></td>
-            </tr>
-            <tr>
-                <td>时间：</td>
-                <td><span id="tb"></span></td>
-            </tr>
-            <tr>
-                <td>主题：</td>
-                <td><span id="subject"></span></td>
-            </tr>
-        </table>
+        发起人：<span id="initiator"></span><br/>
+        邮&nbsp;&nbsp;&nbsp;箱：<span id="contact"></span><br/>
+        日&nbsp;&nbsp;&nbsp;期：<span id="date"></span><br/>
+        时&nbsp;&nbsp;&nbsp;间：<span id="tb"></span><br/>
+        主&nbsp;&nbsp;&nbsp题：<span id="subject"></span>
     </div>
 </div>
 <div class="wrap" id="schedule">

@@ -8,14 +8,13 @@ body {
 }
 
 .wrap {
-	/*width: 1100px;*/
-	/*margin: 0 auto;*/
+	margin: 0 auto;
     float:left;
 	height:100%;
 	width:100%;
 	overflow:hidden;
-	/*position:relative;*/
 }
+
 #todayMeetings {
     float: left;
     width: 85%;
