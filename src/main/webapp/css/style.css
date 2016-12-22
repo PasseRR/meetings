@@ -161,6 +161,7 @@ body {
 .pagingLeft{
     width: 5%;
     float: left;
+    margin: 0 15px;
     height: 550px;
     line-height: 550px;
 }
