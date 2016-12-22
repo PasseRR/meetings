@@ -1,5 +1,6 @@
 package com.gome.meetings;
 
+import cn.dreampie.quartz.QuartzPlugin;
 import com.gome.meetings.controller.*;
 import com.gome.meetings.model.*;
 import com.jfinal.config.*;
@@ -53,6 +54,11 @@ public class SysConfig extends JFinalConfig {
         arp.addMapping("user_menu", UserMenu.class);
         arp.addMapping("room", Room.class);
         arp.addMapping("room_schedule", RoomSchedule.class);
+
+        // 定时任务插件
+//        QuartzPlugin quartzPlugin = new QuartzPlugin();
+//        quartzPlugin.setJobs("jobs.properties");
+//        me.add(quartzPlugin);
     }
 
     @Override
@@ -66,7 +72,15 @@ public class SysConfig extends JFinalConfig {
 
     }
 
-//	public static void main(String[] args) {
+    /**
+     * jfinal启动完成后执行
+     */
+    @Override
+    public void afterJFinalStart() {
+        super.afterJFinalStart();
+    }
+
+    //	public static void main(String[] args) {
 //		JFinal.start("WebRoot", 80, "/", 5);
 //	}
 }

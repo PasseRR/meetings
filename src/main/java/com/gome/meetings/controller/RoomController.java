@@ -8,6 +8,7 @@ import com.gome.meetings.bo.DwzResponseBO;
 import com.gome.meetings.common.CommonConstant;
 import com.gome.meetings.model.Room;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -55,8 +56,8 @@ public class RoomController extends Controller {
         renderJson(responseBO);
     }
 
-    public void isUnique() {
-        List<Record> list = Db.find("select * from room where name= ?", getPara("name"));
+    public void isUnique() throws UnsupportedEncodingException {
+        List<Record> list = Db.find("select * from room where name= ?", new String(super.getPara("name").getBytes("ISO-8859-1"), "UTF-8"));
         if (list.size() > 0) {
             renderText("false");
         } else {
