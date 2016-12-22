@@ -11,6 +11,7 @@
     <link href='/css/fullcalendar.css' rel='stylesheet'/>
     <link href='/css/fullcalendar.print.css' rel='stylesheet' media='print'/>
     <link href='/css/jquery.qtip.min.css' rel='stylesheet'/>
+
     <script src='/js/jquery.min.js'></script>
     <script src='/js/jquery-ui.custom.min.js'></script>
     <script src='/js/jquery.qtip.min.js'></script>
@@ -172,11 +173,11 @@
                                         }
                                     });
                                 }
-                            }else { // 删除会议
+                            } else { // 删除会议
                                 var isOk = confirm('确定删除会议?');
-                                if(isOk){
+                                if (isOk) {
                                     $.getJSON("/roomSchedule/deleteRoomEvent", {
-                                        id : event.id
+                                        id: event.id
                                     }, function (data) {
                                         if (data.isSuccess) {
                                             $('#calendar').fullCalendar('refetchEvents');
@@ -193,6 +194,39 @@
                     if (bool) $('#loading').show();
                     else $('#loading').hide();
                 }
+            });
+
+            $("#schedule").hide();
+            $("#schedule").animate({marginLeft: '-200%'});
+            $("#next").click(function () {
+                $.get("/roomSchedule/todayMeetings", {}, function (data) {
+                    if(data){
+                        // 想table写入数据
+                        $("#todayMeetings table tr[id^=meetings]").remove();
+                        data.forEach(function(item, index){
+                            console.info(index);
+                           $("#todayMeetings table").append(
+                                   "<tr id = 'meetings"+ index +"'>" +
+                                   "<td>" + item.subject + "</td>" +
+                                   "<td>" + item.start + "</td>" +
+                                   "<td>" + item.end + "</td>" +
+                                   "<td>" + item.roomname + "</td>" +
+                                   "<td>" + item.username + "</td>" +
+                                   "<td>" + item.email + "</td>" +
+                                   "</tr>"
+                           );
+                        });
+                    }
+                });
+                $("#scheduleRoom").animate({marginLeft: '-100%'}, 500);
+                $("#schedule").show();
+                $("#schedule").animate({marginLeft: 0}, 500);
+            });
+
+            $("#previous").click(function () {
+                $("#scheduleRoom").animate({marginLeft: 0}, 500);
+                $("#schedule").animate({marginLeft: '-200%'}, 500);
+                $("#schedule").hide();
             });
         });
 
@@ -228,7 +262,7 @@
     </script>
 </head>
 <body>
-<div id='wrap'>
+<div class='wrap' id="scheduleRoom">
     <div id='external-events'>
         <h4>会议室</h4>
         <c:forEach items="${roomList}" var="room" varStatus="status">
@@ -236,12 +270,12 @@
                  onclick="changeRoom(this.id)">${room.name}</div>
         </c:forEach>
     </div>
-
     <div id='calendar'></div>
+    <div class="paging"><a href="#" id="next" style="vertical-align: middle;" title="今日会议">&gt;&gt;</a></div>
 
     <div style='clear: both'></div>
     <div id='loading'>loading...</div>
-    <div id='exit'><a href="/exit" title="注销"><span class="ui-icon ui-icon-power" /></a></div>
+    <div id='exit'><a href="/exit" title="注销"><span class="ui-icon ui-icon-power"/></a></div>
     <div id="qTipContent">
         <table>
             <tr>
@@ -263,6 +297,22 @@
             <tr>
                 <td>主题：</td>
                 <td><span id="subject"></span></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="wrap" id="schedule">
+    <div class="paging"><a href="#" id="previous" title="返回">&lt;&lt;</a></div>
+    <div id="todayMeetings">
+        <table>
+            <caption>今日会议</caption>
+            <tr>
+                <th width="20%">主题</th>
+                <th width="12.5%">开始时间</th>
+                <th width="12.5%">结束时间</th>
+                <th width="8%">会议室</th>
+                <th width="7%">发起人</th>
+                <th width="20%">e-mail</th>
             </tr>
         </table>
     </div>

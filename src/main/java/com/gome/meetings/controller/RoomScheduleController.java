@@ -39,7 +39,7 @@ public class RoomScheduleController extends Controller {
             }
             events.add(event);
         }
-
+        super.setSessionAttr("meetingList", RoomSchedule.dao.getTodayEvent());
         renderJson(events);
     }
 
@@ -106,6 +106,10 @@ public class RoomScheduleController extends Controller {
         Map<String, Object> returnMap = new HashMap<>();
         returnMap.put("isSuccess", true);
         super.renderJson(returnMap);
+    }
+
+    public void todayMeetings(){
+        super.renderJson(RoomSchedule.dao.getTodayEvent());
     }
 
     private Date getToday() {
