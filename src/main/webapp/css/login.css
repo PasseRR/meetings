@@ -80,8 +80,10 @@ body {
 /* ------- Container ------- */
 
 #container {
+    float: left;
 	margin: auto;
 	margin-top: 180px;
+    margin-left: 350px;
 	width: 524px;
 	height: 262px;
 	text-align: left;

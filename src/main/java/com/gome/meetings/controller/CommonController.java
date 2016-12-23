@@ -2,6 +2,7 @@ package com.gome.meetings.controller;
 
 import com.gome.meetings.model.Menu;
 import com.gome.meetings.model.Room;
+import com.gome.meetings.model.RoomSchedule;
 import com.gome.meetings.model.User;
 import com.jfinal.aop.ClearInterceptor;
 import com.jfinal.aop.ClearLayer;
@@ -48,4 +49,7 @@ public class CommonController extends Controller {
         render("login.jsp");
     }
 
+    public void todayMeetings(){
+        super.renderJson(RoomSchedule.dao.getTodayEvent(new Date()));
+    }
 }

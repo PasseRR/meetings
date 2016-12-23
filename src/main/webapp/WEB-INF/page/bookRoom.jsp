@@ -313,7 +313,7 @@
     </div>
 </div>
 <div class="wrap" id="schedule">
-    <div class="paging" title="今日会议"><span class="pagingLeft"><a href="#" id="previous">◀</a></span></div>
+    <div class="paging" title="返回"><span class="pagingLeft"><a href="#" id="previous">◀</a></span></div>
     <div id="todayMeetings">
         <table>
             <caption>今日会议</caption>
