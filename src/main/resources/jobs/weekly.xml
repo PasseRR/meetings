@@ -1,0 +1,12 @@
+<!-- type默认weekly 跟job的group对应 -->
+<jobs type="weekly">
+    <!-- 确保每个job名字唯一 -->
+    <job>
+        <name>周会议</name> <!-- 会议名字 -->
+        <roomName>会议室9-官网组</roomName> <!-- 会议室名字 -->
+        <publisher>谢海</publisher> <!-- 会议发布人 -->
+        <dayOfWeek>2</dayOfWeek> <!-- 星期几 -->
+        <startTime>09:30:00</startTime> <!-- 会议开始时间 格式HH:mm:ss -->
+        <endTime>10:00:00</endTime> <!-- 会议结束时间 格式HH:mm:ss -->
+    </job>
+</jobs>

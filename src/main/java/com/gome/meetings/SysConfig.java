@@ -2,6 +2,7 @@ package com.gome.meetings;
 
 import cn.dreampie.quartz.QuartzPlugin;
 import com.gome.meetings.controller.*;
+import com.gome.meetings.job.JobsLoader;
 import com.gome.meetings.model.*;
 import com.jfinal.config.*;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
@@ -24,6 +25,9 @@ public class SysConfig extends JFinalConfig {
         me.setBaseViewPath("/WEB-INF/page");
 
         loadPropertyFile("jdbcConfig.properties");//加载数据库连接配置
+
+        // 加载定时任务定制配置
+
     }
 
     @Override
@@ -54,7 +58,7 @@ public class SysConfig extends JFinalConfig {
 //        arp.addMapping("user_menu", UserMenu.class);
         arp.addMapping("room", Room.class);
         arp.addMapping("room_schedule", RoomSchedule.class);
-//
+
         // 定时任务插件
         QuartzPlugin quartzPlugin = new QuartzPlugin();
         me.add(quartzPlugin);
@@ -76,8 +80,11 @@ public class SysConfig extends JFinalConfig {
     @Override
     public void afterJFinalStart() {
         super.afterJFinalStart();
+        // 加载任务列表
+        JobsLoader.me().load();
     }
 
+    // jetty 方式启动
     //	public static void main(String[] args) {
 //		JFinal.start("WebRoot", 80, "/", 5);
 //	}
