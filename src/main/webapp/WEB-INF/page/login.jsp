@@ -27,8 +27,8 @@
                 }
                 return str;
             };
-            $("#schedule").hide();
-            $("#schedule").animate({marginLeft: '-200%'});
+            $("#login").hide();
+            $("#login").animate({marginLeft: '-200%'});
             $("#next, .pagingRight").click(function () {
                 $.get("/todayMeetings", {}, function (data) {
                     if(data){
@@ -69,14 +69,14 @@
                     }
                 });
                 $("#login").animate({marginLeft: '-200%'}, 500);
-                $("#schedule").show();
                 $("#schedule").animate({marginLeft: 0}, 500);
+                $("#login").hide();
             });
 
             $("#previous, .pagingLeft").click(function () {
+                $("#login").show();
                 $("#login").animate({marginLeft: 0}, 500);
                 $("#schedule").animate({marginLeft: '-200%'}, 500);
-                $("#schedule").hide();
             });
         });
     </script>
@@ -99,10 +99,16 @@
             <input type="submit" name="submit" value="GO"/>
         </form>
     </div>
-    <div class="paging" title="今日会议"><span class="pagingRight"><a href="#" id="next">▶</a></span></div>
+    <div class="paging" title="今日会议"><span class="pagingRight"><a href="#" id="next">
+        <div style="margin:250px auto;width:20px;line-height:21px;">今日会议</div>
+    </a></span></div>
 </div>
-<div class="wrap" id="schedule">
-    <div class="paging" title="返回"><span class="pagingLeft"><a href="#" id="previous">◀</a></span></div>
+<div class="wrap" id="schedule"><!-- ◀ -->
+    <div class="paging" title="创建会议"><span class="pagingLeft">
+        <a href="#" id="previous">
+            <div style="margin:250px auto;width:20px;line-height:21px;">创建会议</div>
+        </a>
+    </span></div>
     <div id="todayMeetings">
         <table>
             <caption>今日会议</caption>

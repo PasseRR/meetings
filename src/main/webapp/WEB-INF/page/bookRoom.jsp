@@ -299,7 +299,9 @@
         </c:forEach>
     </div>
     <div id='calendar'></div>
-    <div class="paging" title="今日会议"><span class="pagingRight"><a href="#" id="next">▶</a></span></div>
+    <div class="paging" title="今日会议"><span class="pagingRight"><a href="#" id="next">
+        <div style="margin:250px auto;width:20px;line-height:21px;">今日会议</div>
+    </a></span></div>
 
     <div style='clear: both'></div>
     <div id='loading'>loading...</div>
@@ -313,7 +315,9 @@
     </div>
 </div>
 <div class="wrap" id="schedule">
-    <div class="paging" title="返回"><span class="pagingLeft"><a href="#" id="previous">◀</a></span></div>
+    <div class="paging" title="创建会议"><span class="pagingLeft"><a href="#" id="previous">
+        <div style="margin:250px auto;width:20px;line-height:21px;">创建会议</div>
+    </a></span></div>
     <div id="todayMeetings">
         <table>
             <caption>今日会议</caption>
