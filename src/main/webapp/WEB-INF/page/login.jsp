@@ -100,13 +100,13 @@
         </form>
     </div>
     <div class="paging" title="今日会议"><span class="pagingRight"><a href="#" id="next">
-        <div style="margin:250px auto;width:20px;line-height:21px;">今日会议</div>
+        <div class="vertical">今日会议</div>
     </a></span></div>
 </div>
 <div class="wrap" id="schedule"><!-- ◀ -->
     <div class="paging" title="创建会议"><span class="pagingLeft">
         <a href="#" id="previous">
-            <div style="margin:250px auto;width:20px;line-height:21px;">创建会议</div>
+            <div class="vertical">创建会议</div>
         </a>
     </span></div>
     <div id="todayMeetings">

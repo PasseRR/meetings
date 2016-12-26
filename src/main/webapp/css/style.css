@@ -166,6 +166,12 @@ body {
     line-height: 550px;
 }
 
+.vertical {
+    margin:250px auto;
+    width:20px;
+    line-height:21px;
+}
+
 #loading {
 	position: absolute;
 	top: 5px;
