@@ -1,17 +1,17 @@
 package com.gome.meetings.controller;
 
+import com.gome.meetings.LoginInterceptor;
 import com.gome.meetings.model.Menu;
 import com.gome.meetings.model.Room;
 import com.gome.meetings.model.RoomSchedule;
 import com.gome.meetings.model.User;
-import com.jfinal.aop.ClearInterceptor;
-import com.jfinal.aop.ClearLayer;
+import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
 import java.util.Date;
 
-@ClearInterceptor(ClearLayer.ALL)
+@Clear(LoginInterceptor.class)
 public class CommonController extends Controller {
 
     public void index() {

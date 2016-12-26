@@ -56,9 +56,8 @@ public class SysConfig extends JFinalConfig {
         arp.addMapping("room_schedule", RoomSchedule.class);
 //
         // 定时任务插件
-//        QuartzPlugin quartzPlugin = new QuartzPlugin();
-//        quartzPlugin.setJobs("jobs.properties");
-//        me.add(quartzPlugin);
+        QuartzPlugin quartzPlugin = new QuartzPlugin();
+        me.add(quartzPlugin);
     }
 
     @Override
@@ -68,7 +67,6 @@ public class SysConfig extends JFinalConfig {
 
     @Override
     public void configHandler(Handlers me) {
-        // TODO Auto-generated method stub
 
     }
 

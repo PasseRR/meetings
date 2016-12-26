@@ -15,7 +15,49 @@
             } else {
                 document.getElementById('order-food').checked = false;
             }
-        }
+        };
+
+        var loadTodayMeetings = function () {
+            $.get("/todayMeetings", {}, function (data) {
+                if (data) {
+                    // 想table写入数据
+                    $("#todayMeetings table tr[id^=meetings]").remove();
+                    data.forEach(function (item, index) {
+                        var status = "<font color={0}>{1}</font>";
+                        switch (item.status) {
+                            case 0 : {
+                                status = $.format(status, "red", "已结束");
+                                break;
+                            }
+                            case 1 : {
+                                status = $.format(status, "gray", "未开始");
+                                break;
+                            }
+                            case 2 : {
+                                status = $.format(status, "yellow", "即将开始");
+                                break;
+                            }
+                            case 3 : {
+                                status = $.format(status, "green", "进行中");
+                                break;
+                            }
+                        }
+                        $("#todayMeetings table").append(
+                                "<tr id = 'meetings" + index + "'>" +
+                                "<td>" + item.subject + "</td>" +
+                                "<td>" + item.start + "</td>" +
+                                "<td>" + item.end + "</td>" +
+                                "<td>" + item.roomname + "</td>" +
+                                "<td>" + item.username + "</td>" +
+                                "<td>" + item.email + "</td>" +
+                                "<td>" + status + "</td>" +
+                                "</tr>"
+                        );
+                    });
+                }
+            });
+        };
+        loadTodayMeetings();
         $(document).ready(function () {
             $.format = function () {
                 if (arguments.length == 0)
@@ -30,44 +72,7 @@
             $("#login").hide();
             $("#login").animate({marginLeft: '-200%'});
             $("#next, .pagingRight").click(function () {
-                $.get("/todayMeetings", {}, function (data) {
-                    if(data){
-                        // 想table写入数据
-                        $("#todayMeetings table tr[id^=meetings]").remove();
-                        data.forEach(function (item, index) {
-                            var status = "<font color={0}>{1}</font>";
-                            switch (item.status){
-                                case 0 : {
-                                    status = $.format(status, "red", "已结束");
-                                    break;
-                                }
-                                case 1 : {
-                                    status = $.format(status, "gray", "未开始");
-                                    break;
-                                }
-                                case 2 : {
-                                    status = $.format(status, "yellow", "即将开始");
-                                    break;
-                                }
-                                case 3 : {
-                                    status = $.format(status, "green", "进行中");
-                                    break;
-                                }
-                            }
-                            $("#todayMeetings table").append(
-                                    "<tr id = 'meetings" + index + "'>" +
-                                    "<td>" + item.subject + "</td>" +
-                                    "<td>" + item.start + "</td>" +
-                                    "<td>" + item.end + "</td>" +
-                                    "<td>" + item.roomname + "</td>" +
-                                    "<td>" + item.username + "</td>" +
-                                    "<td>" + item.email + "</td>" +
-                                    "<td>" + status + "</td>" +
-                                    "</tr>"
-                            );
-                        });
-                    }
-                });
+                loadTodayMeetings();
                 $("#login").animate({marginLeft: '-200%'}, 500);
                 $("#schedule").animate({marginLeft: 0}, 500);
                 $("#login").hide();

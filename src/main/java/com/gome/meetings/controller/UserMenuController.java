@@ -1,12 +1,11 @@
 package com.gome.meetings.controller;
 
-import com.jfinal.core.Controller;
-import com.jfinal.log.Logger;
-import com.jfinal.plugin.activerecord.Db;
-import com.jfinal.plugin.activerecord.Record;
 import com.gome.meetings.bo.MenuEvent;
 import com.gome.meetings.common.CommonConstant;
 import com.gome.meetings.model.UserMenu;
+import com.jfinal.core.Controller;
+import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Record;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
@@ -20,9 +19,6 @@ import java.util.*;
  * @datetime 2014年4月26日 下午8:55:23
  */
 public class UserMenuController extends Controller {
-
-    private static Logger logger = Logger.getLogger(UserMenuController.class);
-
     /**
      * 获取时间段内的订单
      */
