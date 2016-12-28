@@ -14,13 +14,13 @@ import java.util.List;
 public class UserController extends Controller {
 	
 	public void index(){
-		Page<User> page = User.dao.paginate(CommonConstant.PAGENUMBER, CommonConstant.PAGESIZE, "select *", "from user");
+		Page<User> page = User.dao.paginate(CommonConstant.PAGENUMBER, CommonConstant.PAGESIZE, "select *", "from user order by create_date desc");
 		setAttr("page", page);
 		render("user.jsp");
 	}
 
 	public void getPageList(){
-		Page<User> page = User.dao.paginate(getParaToInt("pageNum"), getParaToInt("numPerPage"), "select *", "from user");
+		Page<User> page = User.dao.paginate(getParaToInt("pageNum"), getParaToInt("numPerPage"), "select *", "from user order by create_date desc");
 		setAttr("page", page);
 		render("user.jsp");
 	}
