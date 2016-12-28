@@ -148,7 +148,7 @@ body {
     cursor:pointer;
 }
 .paging a {color: gray;}
-.paging a:link { color: #F5F5DC;text-decoration:none;}
+.paging a:link { color: gray;text-decoration:none;}
 
 .pagingRight{
     width: 5%;
