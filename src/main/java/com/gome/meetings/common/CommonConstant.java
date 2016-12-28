@@ -22,6 +22,6 @@ public class CommonConstant {
 	/**
 	 * 每页显示条数
 	 */
-	public static final Integer PAGESIZE=10;
+	public static final Integer PAGESIZE=20;
 	
 }
