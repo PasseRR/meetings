@@ -19,8 +19,8 @@
 				<th style="display: none;"></th>
 				<th width="100">真实姓名</th>
 				<th width="150">登录名</th>
-				<th width="80">TEL</th>
-				<th width="80">e-mail</th>
+				<th width="80">电话</th>
+				<th width="80">邮箱</th>
 				<th width="80">创建日期</th>
 			</tr>
 		</thead>
