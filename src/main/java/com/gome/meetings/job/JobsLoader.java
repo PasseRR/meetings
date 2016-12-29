@@ -1,14 +1,18 @@
 package com.gome.meetings.job;
 
 import com.gome.meetings.vo.JobsVo;
+import com.gome.meetings.vo.MonthlyJobVo;
+import com.gome.meetings.vo.WeeklyJobVo;
 import com.jfinal.kit.PathKit;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
 import java.io.File;
 import java.text.MessageFormat;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 解析xml配置的定制定时任务<BR>
@@ -21,7 +25,10 @@ import java.util.concurrent.ConcurrentHashMap;
 @Log4j
 public class JobsLoader {
     private static JobsLoader instance = null;
-    private ConcurrentHashMap<String, JobsVo> jobs = new ConcurrentHashMap<>();
+    @Getter
+    private List<WeeklyJobVo> weeklyJobVos = new ArrayList<>();
+    @Getter
+    private List<MonthlyJobVo> monthlyJobVos = new ArrayList<>();
     /**
      * jobs配置文件路径
      */
@@ -67,7 +74,8 @@ public class JobsLoader {
         log.info(MessageFormat.format("加载目录{0}", JOBS_PATH));
         this.loadFilesAndDirectory(root, files);
 
-        log.info(this.jobs);
+        log.info(MessageFormat.format("周任务列表:{0}", this.weeklyJobVos));
+        log.info(MessageFormat.format("月任务列表:{0}", this.monthlyJobVos));
         log.debug("定制定时任务列表加载结束!");
     }
 
@@ -90,10 +98,12 @@ public class JobsLoader {
                         JobsVo parseJobs = new JobsVo();
                         Serializer serializer = new Persister();
                         serializer.read(parseJobs, file);
-                        if (this.jobs.containsKey(parseJobs.getType())) {
-                            this.jobs.get(parseJobs.getType()).getJobs().addAll(parseJobs.getJobs());
-                        } else {
-                            this.jobs.put(parseJobs.getType(), parseJobs);
+                        if(!parseJobs.getWeeklyJobVos().isEmpty()){
+                            this.weeklyJobVos.addAll(parseJobs.getWeeklyJobVos());
+                        }
+
+                        if(!parseJobs.getMonthlyJobVos().isEmpty()){
+                            this.monthlyJobVos.addAll(parseJobs.getMonthlyJobVos());
                         }
                         log.info(MessageFormat.format("文件/{0}加载完成!", file.getName()));
                     } catch (Exception e) {
@@ -106,16 +116,6 @@ public class JobsLoader {
                 }
             }
         }
-    }
-
-    /**
-     * 通过定制定时任务类型获得jobs
-     *
-     * @param type
-     * @return
-     */
-    public JobsVo getJobsByType(String type) {
-        return this.jobs.get(type);
     }
 
     public static void main(String[] args) {

@@ -2,16 +2,14 @@ package com.gome.meetings.vo;
 
 import lombok.Data;
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
 
 /**
- * 自定义任务vo
+ * job基类属性
  * @author xiehai1
- * @date 2016/12/26 16:02
+ * @date 2016/12/29 17:44
  * @Copyright(c) gome inc Gome Co.,LTD
  */
 @Data
-@Root(name = "job")
 public class JobVo {
     /**
      * 任务名
@@ -29,33 +27,11 @@ public class JobVo {
     @Element
     private String publisher;
     /**
-     * 每月的第几周 1~4
+     * job生效开始日期 格式yyyy-MM-dd
      */
-    @Element(required = false)
-    private Integer weekOfMonth;
-    /**
-     * job开始执行日期 只有在隔周执行才会需要
-     */
-    @Element(required = false)
-    private String startDate;
-    /**
-     * 星期几<BR>
-     * 星期天 0<BR>
-     * 星期一 1<BR>
-     * 星期二 2<BR>
-     * 星期三 3<BR>
-     * 星期四 4<BR>
-     * 星期五 5<BR>
-     * 星期六 6<BR>
-     */
-    @Element(required = false)
-    private Integer dayOfWeek;
-    /**
-     * 日期 1~31
-     */
-    @Element(required = false)
-    private Integer dayOfMonth;
-    /**
+    @Element
+    private String effectiveDate;
+     /**
      * 会议开始时间
      */
     @Element
@@ -65,4 +41,10 @@ public class JobVo {
      */
     @Element
     private String endTime;
+    /**
+     * 周期间隔 如果为周 则为间隔几周 若为月 则为间隔几个月<BR>
+     * 默认为1
+     */
+    @Element(required = false)
+    private Integer interval = 1;
 }

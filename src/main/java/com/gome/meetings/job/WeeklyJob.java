@@ -2,12 +2,10 @@ package com.gome.meetings.job;
 
 import com.gome.meetings.model.RoomSchedule;
 import com.gome.meetings.util.DateUtil;
-import com.gome.meetings.vo.JobVo;
-import com.gome.meetings.vo.JobsVo;
+import com.gome.meetings.vo.WeeklyJobVo;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import lombok.extern.log4j.Log4j;
-import org.apache.commons.lang3.StringUtils;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -18,6 +16,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static com.gome.meetings.util.DateUtil.FORMAT_SHORT;
 
 /**
  * 每周执行一次的任务
@@ -33,13 +33,19 @@ public class WeeklyJob implements Job {
         // 触发时间
         Date fireTime = jobExecutionContext.getFireTime();
         // 从缓存中拿到所有的周任务列表
-        JobsVo jobs = JobsLoader.me().getJobsByType("weekly");
+        List<WeeklyJobVo> weeklyJobVos = JobsLoader.me().getWeeklyJobVos();
         ExecutorService executorService = Executors.newFixedThreadPool(5);
-        for(JobVo job : jobs.getJobs()){
-            // 如果是双周或隔多周会议
-            if(StringUtils.isNotBlank(job.getStartDate())){
-                // 判断触发时间和job可执行性
-            }else{
+        for(WeeklyJobVo job : weeklyJobVos){
+            // 触发时间大于job生效日期
+            Date effectiveDate = DateUtil.parse(job.getEffectiveDate(), FORMAT_SHORT);
+            if(fireTime.after(effectiveDate)){
+                // 如果周期间隔大于1 需要计算触发日期减去生效日期之间的间隔周数是否等于间隔基数
+                if(job.getInterval() > 1){
+                    int diffDays = (int) ((fireTime.getTime() - effectiveDate.getTime()) / (24 * 60 * 60 * 1000));
+                    if(diffDays / 7 != job.getInterval().intValue()){
+                        continue;
+                    }
+                }
                 executorService.execute(new WeeklyThread(fireTime, job));
             }
         }
@@ -54,14 +60,15 @@ public class WeeklyJob implements Job {
 @Log4j
 class WeeklyThread implements Runnable{
     private Date fireTime;
-    private JobVo jobVo;
-    WeeklyThread(Date fireTime, JobVo jobVo){
+    private WeeklyJobVo jobVo;
+    WeeklyThread(Date fireTime, WeeklyJobVo jobVo){
         this.fireTime = fireTime;
         this.jobVo = jobVo;
     }
     @Override
     public void run() {
         log.debug(MessageFormat.format("开始创建任务【{0}】, 创建人【{1}】!", this.jobVo.getName(), this.jobVo.getPublisher()));
+        log.info(jobVo);
         // 通过会议室名字 查询找到会议室id
         final String roomName = this.jobVo.getRoomName();
         List<Record> rooms = Db.find("select * from room where name = ?", roomName);
