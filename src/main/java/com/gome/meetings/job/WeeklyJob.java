@@ -42,7 +42,8 @@ public class WeeklyJob implements Job {
                 // 如果周期间隔大于1 需要计算触发日期减去生效日期之间的间隔周数是否等于间隔基数
                 if(job.getInterval() > 1){
                     int diffDays = (int) ((fireTime.getTime() - effectiveDate.getTime()) / (24 * 60 * 60 * 1000));
-                    if(diffDays / 7 != job.getInterval().intValue()){
+                    // 如果是第一次开始 与生效时间相差为0天 也应该执行job
+                    if((diffDays != 0) && (diffDays / 7 != job.getInterval().intValue())){
                         continue;
                     }
                 }
