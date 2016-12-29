@@ -1,0 +1,12 @@
+<!-- 双周会议 -->
+<jobs type="weekly">
+    <job>
+        <name>技术双周例会</name> <!-- 会议名字 -->
+        <roomName>会议室1</roomName> <!-- 会议室名字 -->
+        <publisher>虞立昂</publisher> <!-- 会议发布人 -->
+        <startDate>2017-01-08</startDate> <!-- 开始执行任务日期 必须任务开始周的周日 -->
+        <dayOfWeek>4</dayOfWeek> <!-- 星期几 -->
+        <startTime>15:00:00</startTime> <!-- 会议开始时间 格式HH:mm:ss -->
+        <endTime>17:00:00</endTime> <!-- 会议结束时间 格式HH:mm:ss -->
+    </job>
+</jobs>

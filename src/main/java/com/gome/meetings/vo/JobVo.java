@@ -34,6 +34,11 @@ public class JobVo {
     @Element(required = false)
     private Integer weekOfMonth;
     /**
+     * job开始执行日期 只有在隔周执行才会需要
+     */
+    @Element(required = false)
+    private String startDate;
+    /**
      * 星期几<BR>
      * 星期天 0<BR>
      * 星期一 1<BR>

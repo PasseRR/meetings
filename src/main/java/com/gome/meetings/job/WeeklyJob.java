@@ -7,6 +7,7 @@ import com.gome.meetings.vo.JobsVo;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import lombok.extern.log4j.Log4j;
+import org.apache.commons.lang3.StringUtils;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -35,7 +36,12 @@ public class WeeklyJob implements Job {
         JobsVo jobs = JobsLoader.me().getJobsByType("weekly");
         ExecutorService executorService = Executors.newFixedThreadPool(5);
         for(JobVo job : jobs.getJobs()){
-            executorService.execute(new WeeklyThread(fireTime, job));
+            // 如果是双周或隔多周会议
+            if(StringUtils.isNotBlank(job.getStartDate())){
+                // 判断触发时间和job可执行性
+            }else{
+                executorService.execute(new WeeklyThread(fireTime, job));
+            }
         }
         executorService.shutdown();
         log.debug("周任务执行结束!");

@@ -304,7 +304,7 @@
     </a></span></div>
 
     <div style='clear: both'></div>
-    <div id='loading'>loading...</div>
+    <div id='download'><a href="/roomSchedule/downloadExcel">周期会议模版</a> </div>
     <div id='exit'><a href="/exit" title="注销"><span class="ui-icon ui-icon-power"/></a></div>
     <div id="qTipContent">
         发起人：<span id="initiator"></span><br/>

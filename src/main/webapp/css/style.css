@@ -179,6 +179,12 @@ body {
 	display: none;
 }
 
+#download {
+	position: absolute;
+	top: 5px;
+    left: 15px;
+}
+
 #qTipContent {
 	display: none;
 }

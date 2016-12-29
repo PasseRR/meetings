@@ -4,11 +4,14 @@ import com.gome.meetings.bo.RoomEvent;
 import com.gome.meetings.common.CommonConstant;
 import com.gome.meetings.model.RoomSchedule;
 import com.jfinal.core.Controller;
+import com.jfinal.kit.FileKit;
+import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.util.*;
@@ -106,6 +109,10 @@ public class RoomScheduleController extends Controller {
         Map<String, Object> returnMap = new HashMap<>();
         returnMap.put("isSuccess", true);
         super.renderJson(returnMap);
+    }
+
+    public void downloadExcel(){
+        super.renderFile(new File(PathKit.getRootClassPath() + "/excel/周期会议模版.xlsx"));
     }
 
     public void todayMeetings(){
