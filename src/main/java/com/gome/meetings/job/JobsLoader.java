@@ -8,7 +8,13 @@ import lombok.Getter;
 import lombok.extern.log4j.Log4j;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
+import org.xml.sax.SAXException;
 
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 import java.io.File;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -25,6 +31,7 @@ import java.util.List;
 @Log4j
 public class JobsLoader {
     private static JobsLoader instance = null;
+    private static Validator validator = null;
     @Getter
     private List<WeeklyJobVo> weeklyJobVos = new ArrayList<>();
     @Getter
@@ -33,6 +40,10 @@ public class JobsLoader {
      * jobs配置文件路径
      */
     private static final String JOBS_PATH = "/jobs";
+    /**
+     * xml 校验文件
+     */
+    private static final String XSD_PATH = "/xsd/jobs.xsd";
 
     private JobsLoader() {
 
@@ -54,6 +65,20 @@ public class JobsLoader {
 
 
         return instance;
+    }
+
+    public static Validator validator() throws SAXException {
+        if (null == validator) {
+            synchronized (JobsLoader.class) {
+                if (null == validator) {
+                    SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
+                    File schemaFile = new File(PathKit.getRootClassPath() + XSD_PATH);
+                    Schema schema = schemaFactory.newSchema(schemaFile);
+                    validator = schema.newValidator();
+                }
+            }
+        }
+        return validator;
     }
 
     /**
@@ -81,7 +106,8 @@ public class JobsLoader {
 
     /**
      * 加载目录下的xml定制定时任务配置文件
-     * @param root 根目录
+     *
+     * @param root  根目录
      * @param files 根目录下的文件
      */
     private void loadFilesAndDirectory(File root, File[] files) {
@@ -94,15 +120,16 @@ public class JobsLoader {
                 this.loadFilesAndDirectory(file, file.listFiles());
             } else {
                 if (file.getName().endsWith(".xml")) {
+                    this.validateJobsConfig(file);
                     try {
                         JobsVo parseJobs = new JobsVo();
                         Serializer serializer = new Persister();
                         serializer.read(parseJobs, file);
-                        if(!parseJobs.getWeeklyJobVos().isEmpty()){
+                        if (!parseJobs.getWeeklyJobVos().isEmpty()) {
                             this.weeklyJobVos.addAll(parseJobs.getWeeklyJobVos());
                         }
 
-                        if(!parseJobs.getMonthlyJobVos().isEmpty()){
+                        if (!parseJobs.getMonthlyJobVos().isEmpty()) {
                             this.monthlyJobVos.addAll(parseJobs.getMonthlyJobVos());
                         }
                         log.info(MessageFormat.format("文件/{0}加载完成!", file.getName()));
@@ -115,6 +142,21 @@ public class JobsLoader {
                     log.info(MessageFormat.format("跳过文件/{0}", file.getName()));
                 }
             }
+        }
+    }
+
+    /**
+     * xml验证
+     * @param file
+     * @return
+     */
+    public void validateJobsConfig(File file){
+        Source source = new StreamSource(file);
+        try {
+            validator().validate(source);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new RuntimeException(e.getMessage());
         }
     }
 

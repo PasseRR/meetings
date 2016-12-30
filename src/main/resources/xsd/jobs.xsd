@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="https://github.com/PasseRR/meetings"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="https://github.com/PasseRR/meetings"
+            elementFormDefault="qualified">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="jobs">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="cn">
+                <![CDATA[
+                  定制定时任务配置根节点
+                ]]>
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:element name="weekly" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            <![CDATA[
+                              每周执行的定时任务节点
+                            ]]>
+                        </xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:complexType>
+                        <xsd:all>
+                            <xsd:element name="name" type="name"/>
+                            <xsd:element name="roomName" type="roomName"/>
+                            <xsd:element name="publisher" type="publisher"/>
+                            <xsd:element name="effectiveDate" type="effectiveDate"/>
+                            <xsd:element name="interval" type="interval" default="1"/>
+                            <xsd:element name="dayOfWeek" type="dayOfWeek"/>
+                            <xsd:element name="startTime" type="startTime"/>
+                            <xsd:element name="endTime" type="endTime"/>
+                        </xsd:all>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="monthly" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            <![CDATA[
+                              每月执行的定时任务节点
+                            ]]>
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:simpleType name="name">
+        <xsd:annotation>
+            <xsd:documentation>
+                <![CDATA[
+                  周会议名称
+                ]]>
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="256"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="roomName">
+        <xsd:annotation>
+            <xsd:documentation>
+                <![CDATA[
+                  周会议举行所在会议室名称
+                ]]>
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="32"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="publisher">
+        <xsd:annotation>
+            <xsd:documentation>
+                <![CDATA[
+                  周会议发布人
+                ]]>
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="8"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="startTime">
+        <xsd:annotation>
+            <xsd:documentation>
+                <![CDATA[
+                  会议开始时间
+                ]]>
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:time"/>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="endTime">
+        <xsd:annotation>
+            <xsd:documentation>
+                <![CDATA[
+                  会议结束时间
+                ]]>
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:time"/>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="effectiveDate">
+        <xsd:annotation>
+            <xsd:documentation>
+                <![CDATA[
+                  会议结束时间
+                ]]>
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:date"/>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="interval">
+        <xsd:annotation>
+            <xsd:documentation>
+                <![CDATA[
+                  会议周期间隔
+                ]]>
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="1"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="dayOfWeek">
+        <xsd:annotation>
+            <xsd:documentation>
+                <![CDATA[
+                  星期几(0-6 分别代表星期天、星期一到六)
+                ]]>
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="6"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>
