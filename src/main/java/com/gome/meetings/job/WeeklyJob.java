@@ -10,6 +10,7 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
+import java.math.BigDecimal;
 import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -95,6 +96,21 @@ class WeeklyThread implements Runnable{
         final String start = date + " " + this.jobVo.getStartTime();
         // 结束时间字符串
         final String end = date + " " + this.jobVo.getEndTime();
+        // 判断是否存在会议 在[start, end]之间
+        long count = Db.queryLong("select count(1) from room_schedule where roomid = ? and " +
+                        "((start > ? and start <= ?) or (start <= ? and end >= ?) or (end > ? and end <= ?))",
+                roomId,
+                DateUtil.parse(start, DateUtil.FORMAT_LONG),
+                DateUtil.parse(end, DateUtil.FORMAT_LONG),
+                DateUtil.parse(start, DateUtil.FORMAT_LONG),
+                DateUtil.parse(end, DateUtil.FORMAT_LONG),
+                DateUtil.parse(start, DateUtil.FORMAT_LONG),
+                DateUtil.parse(end, DateUtil.FORMAT_LONG)
+        );
+        if(count > 0){
+            log.warn(MessageFormat.format("会议【{0}】在会议室【{1}】,时间区间[{2}, {3}]会与其他会议冲突", this.jobVo.getName(), this.jobVo.getRoomName(), start, end));
+            return;
+        }
         // 通过触发时间 自动创建发布任务
         new RoomSchedule().set("start", DateUtil.parse(start, DateUtil.FORMAT_LONG))
                 .set("end", DateUtil.parse(end, DateUtil.FORMAT_LONG))
