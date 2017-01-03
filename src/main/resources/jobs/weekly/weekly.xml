@@ -1,7 +1,7 @@
 <jobs xmlns="https://github.com/PasseRR/meetings"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="https://github.com/PasseRR/meetings
-      https://github.com/PasseRR/meetings/xml/jobs.xsd">
+      https://github.com/PasseRR/meetings/blob/master/src/main/resources/xsd/jobs.xsd">
     <weekly>
         <name>技术双周例会</name>
         <roomName>会议室1</roomName>
