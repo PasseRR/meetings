@@ -96,7 +96,20 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
+            <!-- tomcat部署插件 -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <!-- 需要在settings.xml中配置tomcat server信息 -->
+                    <server>meetings</server>
+                    <url>http://10.128.31.78:60000/manager/text</url>
+                    <path>/</path>
+                </configuration>
+            </plugin>
         </plugins>
+
          <finalName>${project.artifactId}</finalName>
     </build>
 </project>
