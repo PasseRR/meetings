@@ -14,6 +14,26 @@
         </xsd:annotation>
         <xsd:complexType>
             <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:element name="daily" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            <![CDATA[
+                              每周执行的定时任务节点
+                            ]]>
+                        </xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:complexType>
+                        <xsd:all>
+                            <xsd:element name="name" type="name"/>
+                            <xsd:element name="roomName" type="roomName"/>
+                            <xsd:element name="publisher" type="publisher"/>
+                            <xsd:element name="effectiveDate" type="effectiveDate"/>
+                            <xsd:element name="interval" type="interval" default="1"/>
+                            <xsd:element name="startTime" type="startTime"/>
+                            <xsd:element name="endTime" type="endTime"/>
+                        </xsd:all>
+                    </xsd:complexType>
+                </xsd:element>
                 <xsd:element name="weekly" minOccurs="0" maxOccurs="unbounded">
                     <xsd:annotation>
                         <xsd:documentation>

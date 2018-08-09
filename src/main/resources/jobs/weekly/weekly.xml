@@ -2,36 +2,36 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="https://github.com/PasseRR/meetings
       https://github.com/PasseRR/meetings/blob/master/src/main/resources/xsd/jobs.xsd">
-    <weekly>
-        <name>技术双周例会</name>
-        <roomName>会议室1</roomName>
-        <publisher>虞立昂</publisher>
-        <effectiveDate>2017-01-08</effectiveDate>
-        <interval>2</interval>
-        <dayOfWeek>4</dayOfWeek>
-        <startTime>15:00:00</startTime>
-        <endTime>17:00:00</endTime>
-    </weekly>
+    <!--<weekly>-->
+        <!--<name>技术双周例会</name>-->
+        <!--<roomName>会议室1</roomName>-->
+        <!--<publisher>虞立昂</publisher>-->
+        <!--<effectiveDate>2017-01-08</effectiveDate>-->
+        <!--<interval>2</interval>-->
+        <!--<dayOfWeek>4</dayOfWeek>-->
+        <!--<startTime>15:00:00</startTime>-->
+        <!--<endTime>17:00:00</endTime>-->
+    <!--</weekly>-->
 
-    <weekly>
-        <name>成都研发中心周五周例会</name>
-        <roomName>会议室1</roomName>
-        <publisher>虞立昂</publisher>
-        <effectiveDate>2017-01-01</effectiveDate>
-        <interval>1</interval>
-        <dayOfWeek>5</dayOfWeek>
-        <startTime>10:00:00</startTime>
-        <endTime>12:00:00</endTime>
-    </weekly>
+    <!--<weekly>-->
+        <!--<name>成都研发中心周五周例会</name>-->
+        <!--<roomName>会议室1</roomName>-->
+        <!--<publisher>虞立昂</publisher>-->
+        <!--<effectiveDate>2017-01-01</effectiveDate>-->
+        <!--<interval>1</interval>-->
+        <!--<dayOfWeek>5</dayOfWeek>-->
+        <!--<startTime>10:00:00</startTime>-->
+        <!--<endTime>12:00:00</endTime>-->
+    <!--</weekly>-->
 
-    <weekly>
-        <name>PMO周例会</name>
-        <roomName>会议室1</roomName>
-        <publisher>虞立昂</publisher>
-        <effectiveDate>2017-01-01</effectiveDate>
-        <interval>1</interval>
-        <dayOfWeek>5</dayOfWeek>
-        <startTime>09:15:00</startTime>
-        <endTime>10:00:00</endTime>
-    </weekly>
+    <!--<weekly>-->
+        <!--<name>PMO周例会</name>-->
+        <!--<roomName>会议室1</roomName>-->
+        <!--<publisher>虞立昂</publisher>-->
+        <!--<effectiveDate>2017-01-01</effectiveDate>-->
+        <!--<interval>1</interval>-->
+        <!--<dayOfWeek>5</dayOfWeek>-->
+        <!--<startTime>09:15:00</startTime>-->
+        <!--<endTime>10:00:00</endTime>-->
+    <!--</weekly>-->
 </jobs>

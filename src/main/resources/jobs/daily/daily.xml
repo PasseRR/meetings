@@ -1,0 +1,14 @@
+<jobs xmlns="https://github.com/PasseRR/meetings"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://github.com/PasseRR/meetings
+      https://github.com/PasseRR/meetings/blob/master/src/main/resources/xsd/jobs.xsd">
+    <daily>
+        <name>三组晨会</name>
+        <roomName>会议室</roomName>
+        <publisher>admin</publisher>
+        <effectiveDate>2018-08-09</effectiveDate>
+        <interval>1</interval>
+        <startTime>09:30:00</startTime>
+        <endTime>09:45:00</endTime>
+    </daily>
+</jobs>
