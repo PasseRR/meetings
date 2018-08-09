@@ -65,7 +65,7 @@
             <version>1.1.2</version>
             <scope>provided</scope>
         </dependency>
-         <!-- https://mvnrepository.com/artifact/jstl/jstl -->
+        <!-- https://mvnrepository.com/artifact/jstl/jstl -->
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
@@ -76,6 +76,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.8</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.simpleframework/simple-xml -->
@@ -86,7 +87,7 @@
         </dependency>
     </dependencies>
 
-     <build>
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -96,20 +97,50 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-war-plugin</artifactId>-->
+                <!--<version>2.6</version>-->
+                <!--<configuration>-->
+                    <!--<attachClasses>true</attachClasses>-->
+                    <!--<warName>meetings</warName>-->
+                    <!--&lt;!&ndash; 激活spring profile &ndash;&gt;-->
+                    <!--<webResources>-->
+                        <!--<resource>-->
+                            <!--<filtering>true</filtering>-->
+                            <!--<directory>src/main/resources</directory>-->
+                            <!--<targetPath>WEB-INF/classes</targetPath>-->
+                            <!--<excludes>-->
+                                <!--<exclude>**/web.xml</exclude>-->
+                            <!--</excludes>-->
+                        <!--</resource>-->
+                        <!--<resource>-->
+                            <!--<filtering>true</filtering>-->
+                            <!--<directory>src/main/resources</directory>-->
+                            <!--<targetPath>WEB-INF</targetPath>-->
+                            <!--<includes>-->
+                                <!--<include>**/web.xml</include>-->
+                            <!--</includes>-->
+                        <!--</resource>-->
+                    <!--</webResources>-->
+                    <!--<warSourceDirectory>src/main/webapp</warSourceDirectory>-->
+                    <!--<webXml>src/main/webapp/WEB-INF/web.xml</webXml>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
             <!-- tomcat部署插件 -->
             <!--<plugin>-->
-                <!--<groupId>org.apache.tomcat.maven</groupId>-->
-                <!--<artifactId>tomcat7-maven-plugin</artifactId>-->
-                <!--<version>2.2</version>-->
-                <!--<configuration>-->
-                    <!--&lt;!&ndash; 需要在settings.xml中配置tomcat server信息 &ndash;&gt;-->
-                    <!--<server>meetings</server>-->
-                    <!--<url>http://10.128.31.78:60000/manager/text</url>-->
-                    <!--<path>/</path>-->
-                <!--</configuration>-->
+            <!--<groupId>org.apache.tomcat.maven</groupId>-->
+            <!--<artifactId>tomcat7-maven-plugin</artifactId>-->
+            <!--<version>2.2</version>-->
+            <!--<configuration>-->
+            <!--&lt;!&ndash; 需要在settings.xml中配置tomcat server信息 &ndash;&gt;-->
+            <!--<server>meetings</server>-->
+            <!--<url>http://10.128.31.78:60000/manager/text</url>-->
+            <!--<path>/</path>-->
+            <!--</configuration>-->
             <!--</plugin>-->
         </plugins>
 
-         <finalName>${project.artifactId}</finalName>
+        <finalName>${project.artifactId}</finalName>
     </build>
 </project>
