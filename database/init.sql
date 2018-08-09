@@ -18,17 +18,14 @@ CREATE TABLE user (
   create_date DATETIME    NOT NULL
 );
 INSERT INTO user (id, name, loginName, password, tel, email, create_date)
-VALUES (1, '管理员', 'admin', 'admin', '15102751852', 'admin@gome.com.cn', now());
+VALUES (1, '管理员', 'admin', 'admin', '13512345678', 'admin@tellyes.com', now());
 
 -- 会议室表
 CREATE TABLE room (
   id   INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(32) NOT NULL
 );
-INSERT INTO room (id, name) VALUES (1, '会议室一');
-INSERT INTO room (id, name) VALUES (2, '会议室二');
-INSERT INTO room (id, name) VALUES (3, '会议室三');
-INSERT INTO room (id, name) VALUES (4, '会议室四');
+INSERT INTO room (id, name) VALUES (1, '会议室');
 
 CREATE TABLE room_schedule (
   id          INT PRIMARY KEY AUTO_INCREMENT,
